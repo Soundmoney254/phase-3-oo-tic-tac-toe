@@ -80,11 +80,11 @@ class TicTacToe
     won? || draw?
   end
 
-  def winner
-    if win_combination = won?
-      @board[win_combination[0]]
-    end
+def winner
+  if win_combination = won?
+    @board[win_combination[0]]
   end
+end
 
   def play
     display_board
@@ -96,7 +96,7 @@ class TicTacToe
     if won?
       puts "Congratulations #{winner}!"
     else
-      puts "It's a draw!"
+      puts "Cat's Game!"
     end
   end
 end
