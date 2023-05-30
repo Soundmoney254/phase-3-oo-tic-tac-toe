@@ -50,7 +50,7 @@ class TicTacToe
     puts "Please enter a number (1-9):"
     user_input = gets.strip
     index = input_to_index(user_input)
-    
+
     if valid_move?(index)
       move(index, current_player)
       display_board
@@ -61,11 +61,10 @@ class TicTacToe
   end
 
   def won?
-    WIN_COMBINATIONS.each do |win_combination|
-      positions = [@board[win_combination[0]], @board[win_combination[1]], @board[win_combination[2]]]
-      return win_combination if positions.all?("X") || positions.all?("O")
+    WIN_COMBINATIONS.detect do |win_combination|
+      positions = @board.values_at(*win_combination)
+      positions.all?("X") || positions.all?("O")
     end
-    false
   end
 
   def full?
@@ -80,11 +79,11 @@ class TicTacToe
     won? || draw?
   end
 
-def winner
-  if win_combination = won?
-    @board[win_combination[0]]
+  def winner
+    if win_combination = won?
+      @board[win_combination[0]]
+    end
   end
-end
 
   def play
     display_board
